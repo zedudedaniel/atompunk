@@ -1,0 +1,62 @@
+body.main {
+	background-color: #000000;
+	color: whitesmoke;
+	background-image: url("images/map.png");
+	overflow: scroll;
+	width: 1335px;
+	height: 789px;
+	background-repeat: no-repeat;
+}
+
+.poi {
+	text-align: center;
+	width: 80px;
+}
+
+.poi-image {
+    height: 16px;
+	padding: 5px;
+    border-radius: 16px;
+    background-color: #0A8115;
+	display: inline-block;
+	cursor: crosshair;
+}
+
+.poi-text {
+	display: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: lightyellow;
+}
+
+.poi-image img {
+	width: 16px;
+	height: 16px;
+	z-index: 10;
+}
+
+
+.poi-image:hover+.poi-text {
+	display: block;
+	z-index: 10000;
+}
+
+.poi-image:hover {
+	background-color: lightyellow;
+}
+
+/*
+.poi:hover {
+    	height: 24px;
+	padding: 5px;
+    	border-radius: 24px;
+    	background-color: #0A8115;
+	left: -4px;
+	top: 4px;
+}
+
+.poi:hover img {
+	width: 24px;
+	height: 24px;
+}
+*/
