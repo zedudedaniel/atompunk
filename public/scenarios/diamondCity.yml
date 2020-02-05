@@ -1,0 +1,39 @@
+diamondCityCheckpoint:
+  title: Into the city
+  description: |
+    Assuming that the city would be completely destroyed was a mistake. Not only did many buildings remain stable, the roads leading to it were relatively well-off, too.
+    The first person we came across was a young man, dressed in tattered clothes. This mimicked his camp, which was similarly in squalor. Upon spotting us, he quickly retreated, panicked. He held a crowbar in his hand.
+    "Who-Who the hell are you?"
+  options:
+    - label: We're from the bunker a mile south. Who are you?
+      goto: answerQuestion
+    - label: (Attack)
+      goto: attackPass
+    - label: Calm down. We're not going to hurt you. (Persuasion %)
+      outcomes:
+        - condition: check(persuasion)>80
+          goto: calmDownPass
+        - else:
+          goto: calmDownFail
+
+answerQuestion:
+  title: Acquaintances
+  description: |
+    "I...I'm Marlon." he says, caution waning. He acts as though he expected an assault or mugging.
+    "The bunker, you say? So there were people living in it all along. The city'll like to know that.
+    He pauses. "I don't suppose you have any food? There's nothing here for me..."
+  options:
+    - label: Yeah, here's some. (-10 food)
+      enabled: food >= 10
+    - label: We can't afford any food to spare. Sorry.
+
+attackPass:
+  title: Combat!
+  description: |
+    A quick shot was enough to finish the frail man, his tattered body falling to the ground. After a quick examination of his body and his tent, some rewards are found.
+    His crowbar remains up for grabs; But it's not a weightless object.
+  options:
+    - label: Take the crowbar.
+      action: gearAdd('crowbar')
+    - label: Leave it.
+  goto: exit

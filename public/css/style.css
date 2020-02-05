@@ -1,7 +1,9 @@
+
+
 body.main {
 	background-color: #000000;
 	color: whitesmoke;
-	background-image: url("images/map.png");
+	background-image: url("/images/map.png");
 	overflow: scroll;
 	width: 1335px;
 	height: 789px;

@@ -2,6 +2,7 @@ var locations={
 	home: {
 		type: "bunker",
 		label: "Bunker 001",
+		initEvent: "diamondCityCheckpoint",
 		coordinates: {
 			x: 650,
 			y: 360
