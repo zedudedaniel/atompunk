@@ -62,3 +62,18 @@ body.main {
 	height: 24px;
 }
 */
+
+.ui-dialog .ui-dialog-buttonpane button {
+    cursor: pointer;
+    width: 100%;
+    margin: 1px !important;
+    background-color: #333;
+}
+
+.connection {
+	height: 2px;
+	background-color: yellow;
+	display: inline-block;
+	position: absolute;
+	transform-origin: top left;
+}

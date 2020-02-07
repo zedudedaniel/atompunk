@@ -1,0 +1,80 @@
+introTester:
+title: Testing
+description: |
+  PAGE ONE
+options:
+  - label: Generic Choice (Go to new page)
+    goto: genericChoice
+  - label: Fight (Combat)
+    combat: True
+    #Main.js checks if combat is true (instead of null)
+    #Then runs a combat program
+    #Combat will have a generic page that reports on results from fight.
+  - label: Test a skill (Skill Check)
+    skillCheck: (Persuasion, 80, skillPass, skillFail) #This is where we use eval()?
+    #Can we manipulate a yml goto, depending on the result?
+  - label: Strike-out option (Requires resource, still shown)
+    enable: resource(crowbar, 1, GTE) #Can I write >= instead of GTE?
+    goto: strikeOutChoice
+  - label: Hidden option (Requires resource, not shown otherwise)
+    shown: resource(crowbar, 1, GTE)
+    goto: hiddenChoice
+  - label: If you have the object choice (Skillcheck to lie)
+    shown: resource(c)
+    skillCheck: 
+
+#Is it possible to inherit title?
+
+genericChoice:
+description: GENERIC CHOICE
+
+skillPass:
+description: SKILL PASS
+
+skillFail:
+description: SKILL FAIL
+
+strikeOutChoice:
+description: STRIKE OUT CHOICE
+
+hiddenChoice:
+description: HIDDEN CHOICE
+
+
+
+
+
+  options:
+    - label: We're from the bunker a mile south. Who are you?
+      goto: answerQuestion
+    - label: (Attack)
+      goto: attackPass
+    - label: Calm down. We're not going to hurt you. (Persuasion %)
+      goto: attackPass
+      outcomes:
+        - condition: check(persuasion)>80
+          goto: calmDownPass
+        - else:
+          goto: calmDownFail
+
+  options:
+    - label: We're from the bunker a mile south. Who are you?
+      goto: answerQuestion
+    - label: (Attack)
+      goto: attackPass
+    - label: Calm down. We're not going to hurt you. (Persuasion %)
+      goto: 
+        calmDownPass: check(persuasion)>80
+        calmDownFail:
+
+  
+  options:
+    - label: Yes, have it 
+      show: onlyIfIHaveIt() 
+      goto: iHaveState
+    - label: No, I don't
+      run: sc = skillcheck('skill', 80)
+      goto: 
+        #state1: onlyIfIHaveIt() && sc
+        state2: onlyIfIHaveIt() && !sc
+        state3: 

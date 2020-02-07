@@ -10,6 +10,7 @@ diamondCityCheckpoint:
     - label: (Attack)
       goto: attackPass
     - label: Calm down. We're not going to hurt you. (Persuasion %)
+      goto: attackPass
       outcomes:
         - condition: check(persuasion)>80
           goto: calmDownPass

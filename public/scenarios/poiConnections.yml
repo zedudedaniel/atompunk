@@ -1,0 +1,12 @@
+roadOne:
+  path: [ 'home', 'diamondCity' ]
+roadTwo:
+  path: [ 'home', 'crackotown' ]
+roadThree:
+  path: [ 'crackotown', 'beeBeeCity']
+roadFour:
+  path: [ 'beeBeeCity', 'piratePort' ]
+roadFive:
+  path: [ 'diamondCity', 'crackotown' ]
+roadSix:
+  path: [ 'mutantPort', 'diamondCity' ]
