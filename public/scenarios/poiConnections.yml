@@ -3,10 +3,10 @@ roadOne:
 roadTwo:
   path: [ 'home', 'crackotown' ]
 roadThree:
-  path: [ 'crackotown', 'beeBeeCity']
+  path: [ 'beeBeeCity', 'crackotown']
 roadFour:
   path: [ 'beeBeeCity', 'piratePort' ]
 roadFive:
   path: [ 'diamondCity', 'crackotown' ]
 roadSix:
-  path: [ 'mutantPort', 'diamondCity' ]
+  path: [ 'diamondCity','mutantPort']

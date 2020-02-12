@@ -77,3 +77,12 @@ body.main {
 	position: absolute;
 	transform-origin: top left;
 }
+
+#resource-info-button {
+	height: 100px;
+	cursor: pointer;
+}
+
+#ingame-clock {
+	font-family: 'Courier New', Courier, monospace;
+}

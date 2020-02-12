@@ -62,15 +62,47 @@ var locationTypes={
 };
 
 var state = {
-	money: 100,
-	food: 200,
 	team: {
 		raphael:{
 			name: "Raphael",
 			strength: 10,
-			special: {
-				s:10
-			}
+			charisma: 5,
+			luck: 3,
+			weapon: 'baseballBat'
+		},
+		inventory: {
+			money: 100,
+			//food: 2,		
+			baseballBat: 1
 		}
+	},
+	time: {}
+};
+
+var weapons = {
+	rifle: {
+		range: 80,
+		damage: 100,
+		ammo: 'rifleRounds'
+	},
+	shotgun: {
+		range: 20,
+		damage: 200,
+		ammo: 'shotgunShells'
+	},
+	baseballBat: {
+		range: 5,
+		damage: 20,
+		durability: 100
+	},
+	crowbar: {
+		range: 5,
+		damage: 15,
+		durability: 200
 	}
 };
+
+var ammo = [
+	'rifleRounds',
+	'shotgunShells'
+];

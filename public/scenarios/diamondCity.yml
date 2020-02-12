@@ -10,12 +10,9 @@ diamondCityCheckpoint:
     - label: (Attack)
       goto: attackPass
     - label: Calm down. We're not going to hurt you. (Persuasion %)
-      goto: attackPass
-      outcomes:
-        - condition: check(persuasion)>80
-          goto: calmDownPass
-        - else:
-          goto: calmDownFail
+      goto:
+        calmDownPass: skillCheck('charisma',80,'raphael')
+        calmDownFail:
 
 answerQuestion:
   title: Acquaintances
@@ -25,7 +22,8 @@ answerQuestion:
     He pauses. "I don't suppose you have any food? There's nothing here for me..."
   options:
     - label: Yeah, here's some. (-10 food)
-      enabled: food >= 10
+      enabled: invCheck('food', 10)
+      run: invUpdate('food', -10)
     - label: We can't afford any food to spare. Sorry.
 
 attackPass:
@@ -35,6 +33,19 @@ attackPass:
     His crowbar remains up for grabs; But it's not a weightless object.
   options:
     - label: Take the crowbar.
-      action: gearAdd('crowbar')
+      run: invUpdate('crowbar',1)
+      goto: crowBarTake
     - label: Leave it.
   goto: exit
+
+calmDownPass:
+  title: He calmed down!
+  description: yyiadiuau
+
+calmDownFail:
+  title: He's panicked!
+  description: opdpaodpao
+
+crowBarTake:
+  title: Cold, Dead Hands
+  description: Yadda Yadda, NOOB!
