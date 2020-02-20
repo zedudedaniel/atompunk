@@ -86,3 +86,8 @@ body.main {
 #ingame-clock {
 	font-family: 'Courier New', Courier, monospace;
 }
+
+#poi-info p {
+	text-indent: 30px;
+    margin-top: 0;
+}

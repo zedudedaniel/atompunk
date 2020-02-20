@@ -1,0 +1,70 @@
+home:
+  type: bunker
+  title: Bunker 001
+  description: Home, sweet home! A bunker safe from the outside.
+  coordinates:
+    x: 650
+    'y': 390
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: travelTo("home")
+edgeofCity:
+  type: bunker
+  title: Edge of the City
+  initEvent: edgeOfCity
+  coordinates:
+    x: 650
+    'y': 360
+diamondCity:
+  type: city
+  title: Diamond City
+  description: A vibrant city next to the lake.
+  coordinates:
+    x: 650
+    'y': 330
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: alert("Supercalafragalisticexpialadocius")
+  - label: Scavenge
+    run: scavenge()
+  - label: Explore
+    run: explore()
+  - label: Find Valentine
+    #enabled: questIP(findValentine)
+    run: questContinue(findValentine)
+crackotown:
+  type: city
+  title: Crackotown
+  coordinates:
+    x: 800
+    'y': 330
+  descriptions:
+    - condition: newPlace=true
+      text: A small town with no obvious signs of inhabitance.
+    - condition: newPlace=false
+      text: 'A town full of poor, but survivable, people.'
+    - condition: poorExterminationQuest.complete=true
+      text: A village finally rid of its poor filth.
+  actions:
+    - title: ''
+      condition: ''
+beeBeeCity:
+  type: city
+  title: Bee Bee City
+  coordinates:
+    x: 1000
+    'y': 330
+mutantPort:
+  type: port
+  title: Mutant's Port
+  coordinates:
+    x: 200
+    'y': 11
+piratePort:
+  type: port
+  title: Pirate's Port
+  coordinates:
+    x: 1300
+    'y': 30

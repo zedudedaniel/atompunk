@@ -1,0 +1,15 @@
+team:
+  raphael:
+    name: Raphael
+    strength: 10
+    charisma: 5
+    luck: 3
+    weapon: baseballBat
+  lucy:
+    name: Lucy
+location: 'home'
+inventory:
+  money: 100
+  baseballBat: 1
+companion: {}
+enabledPois: ['home', 'edgeOfCity']

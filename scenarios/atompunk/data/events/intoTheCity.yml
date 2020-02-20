@@ -1,0 +1,47 @@
+intoTheCityMarlon:
+  title: Guide into the City
+  description: |
+    <p>You come across a tall, sturdy wall, with an equally formidable gate. 
+    As you come closer, Marlon pipes up, and makes his way to the front.</p>
+    <p>"Hey, what's up! It's me!" he exclaims, loudly, as though the wall could
+    respond. An awkward moment fills the void.</p>
+    <p>Suddenly, a loud PA breaks the silence.</p>
+    <p>"Hey! Marlon! Welcome back! I see you've made some friends!" We catch a peek of
+    him blushing, before the squeaking of the opening door draws our eyes from him.</p>
+    <p>"Told ya guys I'd help." he tells us meekly.</p>
+  options:
+  - label: Why are you blushing like that?
+    goto: questionBlushing
+  - label: So, you have free access inside?
+    goto: questionAccess
+  - label: Wait for the door.
+    goto: marlonLeave
+
+intoTheCity:
+  title: Curious Greeting
+  description: |
+    <p>You come across a tall, sturdy wall, with an equally formidable gate. 
+    As you come closer, a voice on a PA booms across the wasteland.</p>
+    <p>"Welcome to Circan! Business or pleasure?" The tone is, rather than hostile, friendly!</p>
+  options:
+    - label: You're...<i>welcoming</i> us?
+      goto: questionWelcoming
+    - label: Looking for work.
+      goto: businessResponse
+    - label: Just let us in.
+      goto: impatientResponse
+    - label: Pleasure!
+      goto: pleasureResponse
+
+questionBlushing:
+  title: An Odd Blush
+  description: |
+    "Well...she and I are kind of close. But she can definitely be embarrasing sometimes." He chuckles.
+    "Oh, and another thing; I have citizenship here, but you guys are totally new, so you'll probably have
+    to deal with a vetting process of sorts, if you guys want in."
+    The door opens up, and we make our way in. We have time to ask another question, if we want to.
+  options:
+    - label: Make our way inside.
+      goto: marlonLeave
+
+questionAccess:

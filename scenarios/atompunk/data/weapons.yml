@@ -1,0 +1,16 @@
+rifle:
+  range: 80
+  damage: 100
+  ammo: rifleRounds
+shotgun:
+  range: 20
+  damage: 200
+  ammo: shotgunShells
+baseballBat:
+  range: 5
+  damage: 20
+  durability: 100
+crowbar:
+  range: 5
+  damage: 15
+  durability: 200
