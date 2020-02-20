@@ -7,7 +7,10 @@ team:
     weapon: baseballBat
   lucy:
     name: Lucy
-location: 'home'
+location:
+  x: 650
+  y: 390
+  name: home
 inventory:
   money: 100
   baseballBat: 1

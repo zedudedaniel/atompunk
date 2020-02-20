@@ -91,3 +91,7 @@ body.main {
 	text-indent: 30px;
     margin-top: 0;
 }
+
+.team-location .poi-image{
+	background-color: red;
+}

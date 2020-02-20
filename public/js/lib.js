@@ -5,7 +5,6 @@ function loadState() {
 		dataType: 'json',
 		success: function (data) {
 			state = data;
-			state.time=moment().add(100, 'years');
 		}
 	});
 }
@@ -21,14 +20,27 @@ function loadKnowledge() {
 	});
 }
 
-function showIngameTime() {
-    var refreshIngameClock = function () {
-		$("#ingame-clock").html(state.time.format('ddd MMM DD YYYY'));
-		state.time=state.time.add(1, 'days');
-		setTimeout(refreshIngameClock, 1000);
-	}
-	setTimeout(refreshIngameClock, 1000);
+function connectToWS() {
+	const socket = new WebSocket('ws://localhost:8080');
 
+	// Connection opened
+	socket.addEventListener('open', function (event) {
+		socket.send('Hello Server!');
+	});
+
+	// Listen for messages
+	socket.addEventListener('message', function (event) {
+		//console.log('Message from server ', event.data);
+		state = JSON.parse(event.data);
+		showState();
+	});
+}
+var oldLocation;
+function showState() {
+	$("#ingame-clock").html(moment(state.time).format('ddd MMM DD YYYY'));
+	$('#' + oldLocation).removeClass('team-location');
+	oldLocation=state.location.name;
+	$('#' + oldLocation).addClass('team-location');
 }
 
 function drawPois() {
@@ -59,7 +71,18 @@ function renderPoiInfo(locationId) {
 				dialogue.dialog("close");
 				var currentLocation = e.target.attributes.currentLocation.value;
 				var buttonId = e.target.attributes.buttonId.value;
-				eval(knowledge.locations[currentLocation].options[buttonId].run);
+				$.ajax({
+					type: "POST",
+					dataType: 'json',
+					//json: true,
+					url: '/event',
+					contentType : 'application/json',
+					data: JSON.stringify({
+						buttonId: buttonId,
+						location: currentLocation
+					})
+				})
+				//eval(knowledge.locations[currentLocation].options[buttonId].run);
 			}
 		});
 	};
@@ -83,7 +106,7 @@ function renderPoiInfo(locationId) {
 }
 
 function writeAndBindResources() {
-    inventory = $("#resource-info").dialog({
+	inventory = $("#resource-info").dialog({
 		autoOpen: false,
 		height: 400,
 		width: 350,
@@ -98,8 +121,8 @@ function writeAndBindResources() {
 			effect: "fade",
 			duration: 200
 		}
-    });
-    
+	});
+
 	$("#resource-info-button").on("click", function (e) {
 		$("#resource-info").html(_.map(state.team.inventory, function (v, k) {
 			return k + ': ' + v;

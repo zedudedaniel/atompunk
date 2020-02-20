@@ -8,7 +8,7 @@ home:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: travelTo("home")
+    run: location.travelHere()
 edgeofCity:
   type: bunker
   title: Edge of the City
@@ -26,7 +26,7 @@ diamondCity:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: alert("Supercalafragalisticexpialadocius")
+    run: location.travelHere()
   - label: Scavenge
     run: scavenge()
   - label: Explore
@@ -47,9 +47,10 @@ crackotown:
       text: 'A town full of poor, but survivable, people.'
     - condition: poorExterminationQuest.complete=true
       text: A village finally rid of its poor filth.
-  actions:
-    - title: ''
-      condition: ''
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: location.travelHere()
 beeBeeCity:
   type: city
   title: Bee Bee City

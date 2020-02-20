@@ -7,14 +7,26 @@ require('dotenv').config();
 const scenario = {};
 const app = express();
 const port = 3000;
+const WebSocket = require('ws');
+const moment = require('moment');
+const bodyParser = require('body-parser');
 let state;
+let timer;
 const helpers = require(`./scenarios/${process.env.SCENARIO}/helpers/server_helpers.js`)(scenario);
+
+app.use(express.static('public'));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.send('Such an unreasonable request! Never contact me again. I will call the police if you do.');
 });
 
 app.get('/knowledge', function (req, res) {
+    res.json(helpers.getKnowledge());
+});
+
+app.post('/event', function (req, res) {
+    state.location.name=req.body.location;
     res.json(helpers.getKnowledge());
 });
 
@@ -33,7 +45,6 @@ app.get('/scenario/:scenario/:file', function (req, res) {
         res.send(data);
     });
 });
-app.use(express.static('public'));
 try {
     loadScenarios();
   } catch (e) {
@@ -41,6 +52,26 @@ try {
   }
 app.listen(port, function () {
     console.log(`Example app listening on port ${port}!`)
+});
+
+const wss = new WebSocket.Server({ port: 8080 });
+
+function sendState(ws) {
+    //ws.send(Math.random()*100000000000);
+    state.time = moment(state.time).add(1, 'days').toDate();
+    ws.send(JSON.stringify(state));
+    timer = setTimeout(sendState,1000,ws);
+}
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.on('close', function close() {
+    console.log('disconnected');
+    clearTimeout(timer);
+  });
+  timer = setTimeout(sendState,1000,ws);
 });
 
 function loadScenarios() {
@@ -61,5 +92,6 @@ function loadScenarios() {
         })
         console.log(scenario);
         state = scenario.initState;
+        state.time = moment().add(100, 'years').toDate();
       })
 }

@@ -9,8 +9,8 @@ $(document).ready(function () {
 	loadKnowledge();
 	loadState();
 	//loadLocations();
-	showIngameTime();
 	drawPois();
 	writeAndBindResources();
 	drawConnections();
+	connectToWS();
 });
