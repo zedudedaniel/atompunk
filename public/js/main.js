@@ -13,4 +13,5 @@ $(document).ready(function () {
 	writeAndBindResources();
 	drawConnections();
 	connectToWS();
+	timeButtonPress();
 });

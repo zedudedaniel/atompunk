@@ -12,7 +12,8 @@ const moment = require('moment');
 const bodyParser = require('body-parser');
 let state;
 let timer;
-const helpers = require(`./scenarios/${process.env.SCENARIO}/helpers/server_helpers.js`)(scenario);
+let helpers;
+let webSocket;
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -21,13 +22,39 @@ app.get('/', function (req, res) {
     res.send('Such an unreasonable request! Never contact me again. I will call the police if you do.');
 });
 
+app.post('/time-control', function (req, res) {
+    state.timeRunning=!state.timeRunning;
+    if (state.timeRunning) {
+        timer = setTimeout(sendState,1000,webSocket);
+    } else {
+        clearTimeout(timer);
+    }
+    res.json({
+        success: true,
+        state: state
+    });
+});
+
 app.get('/knowledge', function (req, res) {
     res.json(helpers.getKnowledge());
 });
 
 app.post('/event', function (req, res) {
-    state.location.name=req.body.location;
-    res.json(helpers.getKnowledge());
+    var locName=req.body.location;
+    state.location.name=locName;
+    _.forEach(scenario.poiConnections, function (v,k) {
+        if (v.path[0]===locName) {
+            state.knownLocations[v.path[1]]=true;
+        }
+        if (v.path[1]===locName) {
+            state.knownLocations[v.path[0]]=true;
+        }
+    })
+    res.json({
+        success: true,
+        state: state,
+        knowledge: helpers.getKnowledge()
+    });
 });
 
 app.get('/state', function (req, res) {
@@ -64,6 +91,7 @@ function sendState(ws) {
 }
 
 wss.on('connection', function connection(ws) {
+  webSocket=ws;
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
@@ -71,7 +99,9 @@ wss.on('connection', function connection(ws) {
     console.log('disconnected');
     clearTimeout(timer);
   });
-  timer = setTimeout(sendState,1000,ws);
+  if (state.timeRunning) {
+    timer = setTimeout(sendState,1000,ws);
+  }
 });
 
 function loadScenarios() {
@@ -91,7 +121,8 @@ function loadScenarios() {
             }
         })
         console.log(scenario);
-        state = scenario.initState;
+        state = _.cloneDeep(scenario.initState);
+        helpers = require(`./scenarios/${process.env.SCENARIO}/helpers/server_helpers.js`)(scenario,state);
         state.time = moment().add(100, 'years').toDate();
       })
 }

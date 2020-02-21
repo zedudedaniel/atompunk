@@ -9,13 +9,17 @@ home:
   - label: Travel Here
     enabled: state.location!=locationId
     run: location.travelHere()
-edgeofCity:
+edgeOfCity:
   type: bunker
   title: Edge of the City
   initEvent: edgeOfCity
   coordinates:
     x: 650
     'y': 360
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: location.travelHere()
 diamondCity:
   type: city
   title: Diamond City
@@ -57,15 +61,27 @@ beeBeeCity:
   coordinates:
     x: 1000
     'y': 330
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: location.travelHere()
 mutantPort:
   type: port
   title: Mutant's Port
   coordinates:
     x: 200
     'y': 11
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: location.travelHere()
 piratePort:
   type: port
   title: Pirate's Port
   coordinates:
     x: 1300
     'y': 30
+  options:
+  - label: Travel Here
+    enabled: state.location!=locationId
+    run: location.travelHere()

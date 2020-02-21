@@ -1,12 +1,21 @@
 roadOne:
-  path: [ 'home', 'diamondCity' ]
+  path: [ 'home', 'edgeOfCity' ]
+  tags: ['danger']
+roadOnePointFive:
+  path: [ 'edgeOfCity' , 'diamondCity' ]
+  tags: ['danger']
 roadTwo:
   path: [ 'home', 'crackotown' ]
+  tags: [ 'danger', 'pirates' ]
 roadThree:
   path: [ 'beeBeeCity', 'crackotown']
+  tags: ['danger']
 roadFour:
   path: [ 'beeBeeCity', 'piratePort' ]
+  tags: ['danger']
 roadFive:
   path: [ 'diamondCity', 'crackotown' ]
+  tags: ['danger']
 roadSix:
   path: [ 'diamondCity','mutantPort']
+  tags: ['danger']

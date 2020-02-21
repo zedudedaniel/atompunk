@@ -95,3 +95,12 @@ body.main {
 .team-location .poi-image{
 	background-color: red;
 }
+
+#time-button {
+    border: 1px white solid;
+    width: 33px;
+	padding: 3px;
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+}

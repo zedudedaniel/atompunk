@@ -37,16 +37,21 @@ function connectToWS() {
 }
 var oldLocation;
 function showState() {
-	$("#ingame-clock").html(moment(state.time).format('ddd MMM DD YYYY'));
+	$("#ingame-clock").html(moment(state.time).format('MMM DD YYYY'));
 	$('#' + oldLocation).removeClass('team-location');
+	console.log("Remove team from :" + oldLocation, $('#' + oldLocation));
 	oldLocation=state.location.name;
 	$('#' + oldLocation).addClass('team-location');
+	console.log("Put team into :" + oldLocation, $('#' + oldLocation));
+	$("#time-button").html(state.timeRunning? 'Stop' : 'Start');
 }
 
 function drawPois() {
 	_.each(knowledge.locations, function (v, k) {
-		$("body").prepend('<div class="poi" id="' + k + '" style="position: absolute; left: ' + v.coordinates.x + 'px; top: ' + v.coordinates.y + 'px">' + '<div class="poi-image"><img src="images/' + knowledge.locationTypes[v.type].icon + '"></div><div class="poi-text">' + v.title + "</div></div>");
-
+		//'+(k===state.location.name? " team-location" : "")+'
+		if($('#' + k).length < 1) {
+			$("body").prepend('<div class="poi" id="' + k + '" style="position: absolute; left: ' + v.coordinates.x + 'px; top: ' + v.coordinates.y + 'px">' + '<div class="poi-image"><img src="images/' + knowledge.locationTypes[v.type].icon + '"></div><div class="poi-text">' + v.title + "</div></div>");
+		}
 		$(".poi-image").on("click", function (e) {
 			renderPoiInfo(e.target.className == "poi-image" ? e.target.parentElement.id : e.target.parentElement.parentElement.id);
 		});
@@ -80,7 +85,14 @@ function renderPoiInfo(locationId) {
 					data: JSON.stringify({
 						buttonId: buttonId,
 						location: currentLocation
-					})
+					}),
+					success: function (data) {
+						state=data.state;
+						knowledge=data.knowledge;
+						drawPois();
+						drawConnections();
+						showState();			
+					}
 				})
 				//eval(knowledge.locations[currentLocation].options[buttonId].run);
 			}
@@ -103,6 +115,21 @@ function renderPoiInfo(locationId) {
 		}
 	});
 	dialogue.dialog("open");
+}
+
+function timeButtonPress() {
+	$("#time-button").on("click", function (e) {
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			url: '/time-control',
+			contentType : 'application/json',
+			success: function (data) {
+				state=data.state;
+				showState();			
+			}
+		})
+	});
 }
 
 function writeAndBindResources() {

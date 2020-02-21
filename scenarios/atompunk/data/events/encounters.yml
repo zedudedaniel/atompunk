@@ -1,0 +1,41 @@
+dogsAttack:
+  title: Wild Dogs!
+  tags:
+    danger
+  description: |
+    As we made our way down the road, we heard growling noises coming from a 
+    nearby rock. As we went to investigate, a group of dogs jumped out!
+  options:
+  - label: (Combat)
+    run: combat()
+  - label: (Run)
+    run: runAway()
+
+pirateRaid:
+  title: Admiral-able Raid
+  tags:
+    pirates: hostile
+    danger: true
+  description: |
+    <p> The seas, and those who ride it, are unforgiving. It's not long before a nearby boat
+    makes it's way close to us.</p><p>"Your money, or your life." says their captain, as his
+    mates flank us.</p>
+  options:
+    - label: It'll be <i>your</i> life! (Combat)
+      run: combat()
+    - label: Take it!
+      run: mugging()
+
+pirateAssistance:
+  title: Admiral-able Aid
+  tags:
+    pirates: friendly
+    danger: true
+  description: |
+    Who'd have thought that the so called dreaded pirates would help us? Just as some mutant
+    creature arose from the depths, a passing pirate ship jumped in to rescue us. Before we
+    even knew what was happening, they had defeated the beast. Instead of asking
+    for payment, they just gave us a few tips of their hats, and were on there way.
+  options:
+    - label: Continue on our journey.
+      run: exit()

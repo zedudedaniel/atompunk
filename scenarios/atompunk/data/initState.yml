@@ -15,4 +15,9 @@ inventory:
   money: 100
   baseballBat: 1
 companion: {}
-enabledPois: ['home', 'edgeOfCity']
+knownLocations: 
+  home: true
+  edgeOfCity: true
+factions:
+  pirates: hostile
+timeRunning: false
