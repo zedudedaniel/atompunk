@@ -31,7 +31,7 @@ function connectToWS() {
 	// Listen for messages
 	socket.addEventListener('message', function (event) {
 		//console.log('Message from server ', event.data);
-		state = JSON.parse(event.data);
+		state = JSON.parse(event.data).state;
 		showState();
 	});
 }

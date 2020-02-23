@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron electronmain.js"
+    "start": "node app.js",
+    "electron": "electron electron-app.js"
   },
   "repository": {
     "type": "git",
