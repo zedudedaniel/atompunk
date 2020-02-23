@@ -20,4 +20,4 @@ knownLocations:
   edgeOfCity: true
 factions:
   pirates: hostile
-timeRunning: false
+timeRunning: true
