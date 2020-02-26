@@ -5,8 +5,15 @@ team:
     charisma: 5
     luck: 3
     weapon: baseballBat
+    xp: 0
+    perks: 
+      fenceHitter: true #Increases damage with melee weapons
+      packMule: true #Increases carrying capacity
   lucy:
     name: Lucy
+    perks:
+      liarLiar: true #Good at lying
+      blackWidow: true #Powerful against those who are attracted to women
 location:
   x: 650
   y: 390

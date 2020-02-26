@@ -1,0 +1,8 @@
+title: 'Atompunk but for babies'
+description: 'Write this later'
+plugins:
+- core
+- events
+- locations
+- paths
+- time

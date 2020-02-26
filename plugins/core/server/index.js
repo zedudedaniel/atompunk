@@ -2,7 +2,7 @@ const _ = require('lodash');
 const glob = require('glob');
 const fs = require('fs');
 const yaml = require('js-yaml');
-
+const express = require('express');
 
 module.exports = function (server) {
     function loadScenarios() {
@@ -51,10 +51,29 @@ module.exports = function (server) {
         },
         updatePayload: function(payload) {
             payload.state = m.state;
+        },
+        updatePage: function(page) {
+            const body = page.window.document.getElementsByTagName("body")[0];
+            body.className = 'main';
+            const head = page.window.document.getElementsByTagName("head")[0];
+            head.innerHTML='<title>'+m.scenario.config.title+'</title>'+ 
+            '<link rel="stylesheet" type="text/css" href="/css/style.css"/>' + 
+            '<link rel="stylesheet" href="/css/jquery-ui.min.css"/>' + 
+            '<link rel="stylesheet" href="/css/jquery-ui.structure.min.css"/>' + 
+            '<script>if (typeof module === "object") {window.module = module; module = undefined;}</script>' + 
+            '<script src="/js/lib/jquery.min.js"></script>' + 
+            '<script src="/js/lib/lodash.min.js"></script>' + 
+            '<script src="/js/lib/jquery-ui.min.js"></script>' + 
+            '<script src="/js/lib/moment-with-locales.min.js"></script>' + 
+            '<script src="/js/core.js"></script>' +
+            '<script src="/js/main.js"></script>' +
+            '<script>if (window.module) module = window.module;</script>';
+            body.insertAdjacentHTML('afterbegin','<img id="resource-info-button" src="/images/resource_info_icon.png"/><div id="resource-info"></div>');
         }
     };
     m.app = server.app;
     loadScenarios();
+    m.app.use(express.static(`scenarios/${process.env.SCENARIO}/public`));
     m.state = m.scenario.initState;
 
     return m;

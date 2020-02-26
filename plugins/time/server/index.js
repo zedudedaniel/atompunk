@@ -19,6 +19,12 @@ module.exports = function (server) {
             if (state.timeRunning) {
                 payload.state.time = moment(payload.state.time).add(1, 'days').toDate();
             }
+        },
+        updatePage: function(page) {
+            const body = page.window.document.getElementsByTagName("body")[0];
+            body.insertAdjacentHTML('afterbegin','<div id="time-button"></div><div id="ingame-clock"></div>');
+            const head = page.window.document.getElementsByTagName("head")[0];
+            head.insertAdjacentHTML('afterbegin','<script src="/js/time.js"></script>');
         }
     };
     m.app = server.app;

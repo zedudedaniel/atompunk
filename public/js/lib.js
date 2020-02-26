@@ -1,3 +1,4 @@
+/*
 function loadState() {
 	$.ajax({
 		url: '/state',
@@ -19,7 +20,7 @@ function loadKnowledge() {
 		}
 	});
 }
-
+*/
 function connectToWS() {
 	const socket = new WebSocket('ws://localhost:8080');
 
@@ -132,6 +133,7 @@ function timeButtonPress() {
 	});
 }
 
+/*
 function writeAndBindResources() {
 	inventory = $("#resource-info").dialog({
 		autoOpen: false,
@@ -157,7 +159,7 @@ function writeAndBindResources() {
 		inventory.dialog("open");
 	});
 }
-
+*/
 function drawConnections() {
 	function drawConnection(x1, y1, x2, y2) {
 		var angle = Math.atan((y2 - y1) / (x2 - x1 + 0.00000001));

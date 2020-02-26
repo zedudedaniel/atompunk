@@ -22,6 +22,10 @@ module.exports = function (server) {
                     knowledge: server.plugins.core.getKnowledge()
                 });
             });
+        },
+        updatePage: function(page) {
+            const head = page.window.document.getElementsByTagName("head")[0];
+            head.insertAdjacentHTML('afterbegin','<script src="/js/events.js"></script>');
         }
     };
     m.app = server.app;

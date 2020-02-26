@@ -1,0 +1,6 @@
+fenceHitter:
+  title: "Fence Hitter"
+  description: "Increases damage with melee weapons."
+  icon: https://images.template.net/wp-content/uploads/2017/02/22164533/Baseball-Player-Icon1.jpg
+  requirements: level > 10 && strength > 8
+  run: meleeDamageIsRelevant == true && meleeDamgage*1.2
