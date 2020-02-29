@@ -8,18 +8,18 @@ home:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()
 edgeOfCity:
   type: bunker
   title: Edge of the City
-  initEvent: edgeOfCity
+  run: eventStart('edgeOfCity')
   coordinates:
     x: 650
     'y': 360
   options:
   - label: Travel Here
-    enabled: state.location!=locationId
-    run: location.travelHere()
+    enabled: state.location.name!=locationId
+    run: locations.travelHere()
 diamondCity:
   type: city
   title: Diamond City
@@ -30,7 +30,7 @@ diamondCity:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()
   - label: Scavenge
     run: scavenge()
   - label: Explore
@@ -54,7 +54,7 @@ crackotown:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()
 beeBeeCity:
   type: city
   title: Bee Bee City
@@ -64,7 +64,7 @@ beeBeeCity:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()
 mutantPort:
   type: port
   title: Mutant's Port
@@ -74,7 +74,7 @@ mutantPort:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()
 piratePort:
   type: port
   title: Pirate's Port
@@ -84,4 +84,4 @@ piratePort:
   options:
   - label: Travel Here
     enabled: state.location!=locationId
-    run: location.travelHere()
+    run: locations.travelHere()

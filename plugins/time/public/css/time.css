@@ -1,0 +1,12 @@
+#ingame-clock {
+	font-family: 'Courier New', Courier, monospace;
+}
+
+#time-button {
+    border: 1px white solid;
+    width: 33px;
+	padding: 3px;
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+}

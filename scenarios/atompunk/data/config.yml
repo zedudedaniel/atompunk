@@ -6,3 +6,4 @@ plugins:
 - locations
 - paths
 - time
+- timeLocation

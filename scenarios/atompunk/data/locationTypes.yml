@@ -1,6 +1,6 @@
 bunker:
-  icon: bunker.png
+  icon: /scenarios/atompunk/images/bunker.png
 city:
-  icon: city.png
+  icon: /scenarios/atompunk/images/city.png
 port:
-  icon: port.png
+  icon: /scenarios/atompunk/images/port.png

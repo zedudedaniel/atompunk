@@ -1,10 +1,22 @@
-body.main {
+body {
 	background-color: #000000;
 	color: whitesmoke;
 	overflow: scroll;
 	width: 1335px;
 	height: 789px;
 	background-repeat: no-repeat;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+    cursor: pointer;
+    width: 100%;
+    margin: 1px !important;
+    background-color: #333;
+}
+
+#resource-info-button {
+	height: 100px;
+	cursor: pointer;
 }
 
 .ui-dialog .ui-dialog-buttonpane button {

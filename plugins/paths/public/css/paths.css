@@ -1,0 +1,8 @@
+.connection {
+	height: 2px;
+	background-color: yellow;
+	display: inline-block;
+	position: absolute;
+	transform-origin: top left;
+}
+

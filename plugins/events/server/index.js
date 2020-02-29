@@ -6,6 +6,7 @@ module.exports = function (server) {
     const m = {
         addEndpoints: function () {
             m.app.post('/event', function (req, res) {
+                /*
                 var locName = req.body.location;
                 state.location.name = locName;
                 _.forEach(scenario.poiConnections, function (v, k) {
@@ -16,6 +17,7 @@ module.exports = function (server) {
                         state.knownLocations[v.path[0]] = true;
                     }
                 })
+                */
                 res.json({
                     success: true,
                     state: state,
@@ -24,12 +26,15 @@ module.exports = function (server) {
             });
         },
         updatePage: function(page) {
-            const head = page.window.document.getElementsByTagName("head")[0];
-            head.insertAdjacentHTML('afterbegin','<script src="/js/events.js"></script>');
+            page.addScript('/plugins/events/js/events.js');
+            page.addCSS('/plugins/events/css/events.css');
+        },
+        eventStart: function(event) {
+            
         }
     };
     m.app = server.app;
-    scenario = server.plugins.core.scenario;
-    state = server.plugins.core.state;
+    m.scenario = server.plugins.core.scenario;
+    m.state = server.plugins.core.state;
     return m;
 };

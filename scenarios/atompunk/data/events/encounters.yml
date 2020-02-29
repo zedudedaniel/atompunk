@@ -1,7 +1,7 @@
 dogsAttack:
   title: Wild Dogs!
   tags:
-    danger
+    danger: true
   description: |
     As we made our way down the road, we heard growling noises coming from a 
     nearby rock. As we went to investigate, a group of dogs jumped out!

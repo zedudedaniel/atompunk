@@ -21,10 +21,9 @@ module.exports = function (server) {
             }
         },
         updatePage: function(page) {
-            const body = page.window.document.getElementsByTagName("body")[0];
-            body.insertAdjacentHTML('afterbegin','<div id="time-button"></div><div id="ingame-clock"></div>');
-            const head = page.window.document.getElementsByTagName("head")[0];
-            head.insertAdjacentHTML('afterbegin','<script src="/js/time.js"></script>');
+            page.addBodyElement('<div id="time-button"></div><div id="ingame-clock"></div>');
+            page.addScript('/plugins/time/js/time.js');
+            page.addCSS('/plugins/time/css/time.css');
         }
     };
     m.app = server.app;
