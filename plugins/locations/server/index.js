@@ -36,7 +36,8 @@ module.exports = function (server) {
                 if (v.path[1] === m.state.location.name) {
                     m.state.knownLocations[v.path[0]] = true;
                 }
-            })
+            });
+            m.state.startEvent
         }
     };
     m.app = server.app;

@@ -7,12 +7,12 @@ home:
     'y': 390
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()
 edgeOfCity:
   type: bunker
   title: Edge of the City
-  run: eventStart('edgeOfCity')
+  run: events.start('edgeOfCity')
   coordinates:
     x: 650
     'y': 360
@@ -29,7 +29,7 @@ diamondCity:
     'y': 330
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()
   - label: Scavenge
     run: scavenge()
@@ -53,7 +53,7 @@ crackotown:
       text: A village finally rid of its poor filth.
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()
 beeBeeCity:
   type: city
@@ -63,7 +63,7 @@ beeBeeCity:
     'y': 330
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()
 mutantPort:
   type: port
@@ -73,7 +73,7 @@ mutantPort:
     'y': 11
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()
 piratePort:
   type: port
@@ -83,5 +83,5 @@ piratePort:
     'y': 30
   options:
   - label: Travel Here
-    enabled: core.state.location!=locationId
+    enabled: core.state.location.name!=locationId
     run: locations.travelHere()

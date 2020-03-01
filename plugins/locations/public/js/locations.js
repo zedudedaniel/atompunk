@@ -6,6 +6,11 @@ var locations = {
 	processMessage(m) {
 		locations.drawPois();
 		locations.updateTeamLocation();
+		/*
+		if (this.oldLocation!==core.state.location.name) {
+			eval()
+		}
+		*/
 	},
 	updateTeamLocation() {
 		$('#' + locations.oldLocation).removeClass('team-location');

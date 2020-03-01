@@ -22,5 +22,10 @@ var time = {
 				}
 			})
 		});
+	},
+	stop: function() {
+		if (core.state.timeRunning) {
+			time.timeButtonPress();
+		}
 	}
 }
