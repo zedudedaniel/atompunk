@@ -8,15 +8,15 @@ module.exports = function (server) {
     const m = {
         addEndpoints: function () {
             m.app.post('/time-control', function (req, res) {
-                state.timeRunning = !state.timeRunning;
+                m.state.timeRunning = !m.state.timeRunning;
                 res.json({
                     success: true,
-                    state: state
+                    state: m.state
                 });
             });
         },
         updatePayload: function(payload) {
-            if (state.timeRunning) {
+            if (m.state.timeRunning) {
                 payload.state.time = moment(payload.state.time).add(1, 'days').toDate();
             }
         },
@@ -27,7 +27,7 @@ module.exports = function (server) {
         }
     };
     m.app = server.app;
-    state = server.plugins.core.state;
-    state.time = moment().add(100, 'years').toDate();
+    m.state = server.plugins.core.state;
+    m.state.time = moment().add(100, 'years').toDate();
     return m;
 };

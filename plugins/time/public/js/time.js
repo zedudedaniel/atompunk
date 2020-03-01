@@ -1,6 +1,13 @@
 var time = {
 	init: function() {
-		timeButtonPress();
+		time.timeButtonPress();
+	},
+	processMessage(m) {
+		time.updateClock();
+	},
+	updateClock: function() {
+		$("#ingame-clock").html(moment(core.state.time).format('MMM DD YYYY'));
+		$("#time-button").html(core.state.timeRunning? 'Stop' : 'Start');
 	},
 	timeButtonPress: function() {
 		$("#time-button").on("click", function (e) {
@@ -10,8 +17,8 @@ var time = {
 				url: '/time-control',
 				contentType : 'application/json',
 				success: function (data) {
-					state=data.state;
-					core.showState();			
+					core.state=data.state;
+					time.updateClock();
 				}
 			})
 		});

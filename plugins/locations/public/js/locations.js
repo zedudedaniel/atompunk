@@ -1,20 +1,30 @@
 var locations = {
+	oldLocation: undefined,
 	init: function() {
-		this.drawPois();
+		locations.drawPois();
+	},
+	processMessage(m) {
+		locations.drawPois();
+		locations.updateTeamLocation();
+	},
+	updateTeamLocation() {
+		$('#' + locations.oldLocation).removeClass('team-location');
+		locations.oldLocation=core.state.location.name;
+		$('#' + locations.oldLocation).addClass('team-location');
 	},
 	drawPois: function() {
-		_.each(knowledge.locations, function (v, k) {
-			//'+(k===state.location.name? " team-location" : "")+'
+		_.each(core.knowledge.locations, function (v, k) {
+			//'+(k===core.state.location.name? " team-location" : "")+'
 			if($('#' + k).length < 1) {
-				$("body").prepend('<div class="poi" id="' + k + '" style="position: absolute; left: ' + v.coordinates.x + 'px; top: ' + v.coordinates.y + 'px">' + '<div class="poi-image"><img src="' + knowledge.locationTypes[v.type].icon + '"></div><div class="poi-text">' + v.title + "</div></div>");
+				$("body").prepend('<div class="poi" id="' + k + '" style="position: absolute; left: ' + v.coordinates.x + 'px; top: ' + v.coordinates.y + 'px">' + '<div class="poi-image"><img src="' + core.knowledge.locationTypes[v.type].icon + '"></div><div class="poi-text">' + v.title + "</div></div>");
 			}
 			$(".poi-image").on("click", function (e) {
-				this.renderPoiInfo(e.target.className == "poi-image" ? e.target.parentElement.id : e.target.parentElement.parentElement.id);
+				locations.renderPoiInfo(e.target.className == "poi-image" ? e.target.parentElement.id : e.target.parentElement.parentElement.id);
 			});
 		});
 	},
 	renderPoiInfo: function(locationId) {
-		var location = knowledge.locations[locationId];
+		var location = core.knowledge.locations[locationId];
 		var description = location.description;
 		var dialogue;
 		$("#poi-info").html(description);
@@ -49,7 +59,7 @@ var locations = {
 							showState();		
 						} */
 					})
-					//eval(knowledge.locations[currentLocation].options[buttonId].run);
+					//eval(core.knowledge.locations[currentLocation].options[buttonId].run);
 				}
 			});
 		};
@@ -58,7 +68,7 @@ var locations = {
 			height: 400,
 			width: 350,
 			modal: true,
-			title: knowledge.locations[locationId].title,
+			title: core.knowledge.locations[locationId].title,
 			buttons: buttons,
 			show: {
 				effect: "fade",

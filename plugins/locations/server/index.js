@@ -23,8 +23,8 @@ module.exports = function (server) {
                 */
                 res.json({
                     success: true,
-                    state: state,
-                    knowledge: m.app.plugins.core.getKnowledge()
+                    //state: m.state,
+                    //knowledge: m.app.plugins.core.getKnowledge()
                 });
             });
         },

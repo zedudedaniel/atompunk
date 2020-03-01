@@ -8,13 +8,14 @@ module.exports = function (server) {
                 m.destination=state.location.name;
                 state.location.name=m.oldLocation;
                 setTimeout(function(){
-                    state.location.name=m.destination;
+                    m.state.location.name=m.destination;
                     m.oldLocation=m.destination;
                 }, 3000);
             }
-        }
+        },
     };
     m.app = server.app;
     m.server = server;
+    m.state = server.plugins.core.state;
     return m;
 };

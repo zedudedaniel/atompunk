@@ -1,6 +1,6 @@
 var events = {
 	init: function() {
-
+		// do nothing for now
 	},
 	renderState: function(stateId) {
 		var description = scenarios[stateId].description;
@@ -57,15 +57,8 @@ var events = {
 		});
 		dialogue.dialog("open");
 	},
-	oldLocation: undefined,
 	showState: function() {
-		$("#ingame-clock").html(moment(state.time).format('MMM DD YYYY'));
-		$('#' + oldLocation).removeClass('team-location');
-		//console.log("Remove team from :" + oldLocation, $('#' + oldLocation));
-		oldLocation=state.location.name;
-		$('#' + oldLocation).addClass('team-location');
-		//console.log("Put team into :" + oldLocation, $('#' + oldLocation));
-		$("#time-button").html(state.timeRunning? 'Stop' : 'Start');
+		// TBD
 	}
 }
 

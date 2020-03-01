@@ -27,7 +27,7 @@ module.exports = function (server) {
         },
         updatePage: function(page) {
             page.addScript('/plugins/events/js/events.js');
-            page.addCSS('/plugins/events/css/events.css');
+            //page.addCSS('/plugins/events/css/events.css');
         },
         eventStart: function(event) {
             

@@ -1,9 +1,15 @@
 var core = {
+	state: undefined,
+	knowledge: undefined,
 	init: function() {
-		this.loadKnowledge();
-		this.loadState();
-		this.writeAndBindResources();
-		this.connectToWS();
+		core.loadKnowledge();
+		core.loadState();
+		core.writeAndBindResources();
+	},
+	processMessage(m) {
+		core.state = JSON.parse(m.data).state;
+		core.knowledge = JSON.parse(m.data).knowledge;
+		//core.showState();
 	},
 	loadState: function() {
 		$.ajax({
@@ -11,7 +17,7 @@ var core = {
 			async: false,
 			dataType: 'json',
 			success: function (data) {
-				state = data;
+				core.state = data;
 			}
 		});
 	},
@@ -21,30 +27,12 @@ var core = {
 			async: false,
 			dataType: 'json',
 			success: function (data) {
-				knowledge = data;
+				core.knowledge = data;
 			}
 		});
 	},
-	connectToWS: function() {
-		const socket = new WebSocket('ws://localhost:8080');
-	
-		// Connection opened
-		socket.addEventListener('open', function (event) {
-			socket.send('Hello Server!');
-		});
-	
-		// Listen for messages
-		socket.addEventListener('message', function (event) {
-			//console.log('Message from server ', event.data);
-			state = JSON.parse(event.data).state;
-			knowledge = JSON.parse(event.data).knowledge;
-			showState();
-			drawPois();
-			drawConnections();
-		});
-	},
 	writeAndBindResources: function() {
-		inventory = $("#resource-info").dialog({
+		var inventory = $("#resource-info").dialog({
 			autoOpen: false,
 			height: 400,
 			width: 350,
@@ -60,9 +48,8 @@ var core = {
 				duration: 200
 			}
 		});
-	
 		$("#resource-info-button").on("click", function (e) {
-			$("#resource-info").html(_.map(state.inventory, function (v, k) {
+			$("#resource-info").html(_.map(core.state.inventory, function (v, k) {
 				return k + ': ' + v;
 			}).join('<br/>'));
 			inventory.dialog("open");
